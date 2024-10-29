@@ -18,10 +18,6 @@ const links = [
     name: "chat",
     path: "/chat",
   },
-  {
-    name: "contact",
-    path: "/contact",
-  },
 ];
 
 const MobileNav = () => {

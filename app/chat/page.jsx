@@ -10,8 +10,8 @@ const Chat = () => {
     setMessages([...messages, { text: question, sender: "user" }]);
 
     try {
-      const response = await axios.post("http://localhost:5050/chat", {
-        question,
+      const response = await axios.post("http://localhost:5000/chat", {
+        data: { message: question },
       });
 
       setMessages([

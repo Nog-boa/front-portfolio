@@ -7,9 +7,8 @@ import {
   FaReact,
   FaFigma,
   FaNodeJs,
+  FaPython,
 } from "react-icons/fa";
-
-import { SiTailwindcss, SiNextdotjs } from "react-icons/si";
 
 //about data
 const about = {
@@ -22,10 +21,6 @@ const about = {
       fieldValue: "Enog Kim",
     },
     {
-      fieldName: "Phone",
-      fieldValue: "010 1234 5678",
-    },
-    {
       fieldName: "Experience",
       fieldValue: "1 year",
     },
@@ -34,8 +29,30 @@ const about = {
       fieldValue: "Korean",
     },
     {
+      fieldName: "Phone",
+      fieldValue: "I will add it later",
+    },
+    {
       fieldName: "Email",
-      fieldValue: "rlashrdlsrk@naver.com",
+      fieldValue: "I will add it later",
+    },
+  ],
+};
+
+const certificate = {
+  title: "My certificates",
+  description:
+    "I'm interested in cloud services and I'm studying with the goal of devsecops.",
+  items: [
+    {
+      name: "Engineer Information Processing",
+      institute: "Ministry of Science & ICT",
+      duration: "11.2022 ~",
+    },
+    {
+      name: "AWS Solutions Architect Associate",
+      institute: "AWS",
+      duration: "04.2023 ~ 04.2026",
     },
   ],
 };
@@ -45,11 +62,11 @@ const experience = {
   // icon: "/assets/resume/badge.svg",
   title: "My experience",
   description:
-    "I value the availability of the service most and I am interested in security and network, constantly studying.",
+    "I am monitoring the availability of services and performing security control tasks.",
   items: [
     {
       company: "Shieldus",
-      position: "Security opearation",
+      position: "Security control",
       duration: "09.2023 ~",
     },
   ],
@@ -57,13 +74,13 @@ const experience = {
 
 // skil data
 const skills = {
-  title: "My skils",
+  title: "My skills",
   description:
-    "저는 이러한 스킬들을 가지고 있습니다. 추후에 설명을 붙이겠습니다.",
+    "The programming languages I can use include html, css, javascript, and python. It's not a high level of skill, so I keep studying for higher skill.",
   skillList: [
     {
       icon: <FaHtml5 />,
-      name: "htmll 5",
+      name: "html 5",
     },
     {
       icon: <FaCss3 />,
@@ -74,16 +91,8 @@ const skills = {
       name: "javascript",
     },
     {
-      icon: <FaReact />,
-      name: "react.js",
-    },
-    {
-      icon: <SiNextdotjs />,
-      name: "next.js",
-    },
-    {
-      icon: <SiTailwindcss />,
-      name: "tailwind.css",
+      icon: <FaPython />,
+      name: "python",
     },
   ],
 };
@@ -117,13 +126,43 @@ const Reusme = () => {
         >
           <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
             <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="education">Education</TabsTrigger>
+            <TabsTrigger value="certificate">Certificate</TabsTrigger>
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="about">About me</TabsTrigger>
           </TabsList>
 
           {/* content */}
           <div className="min-h-[70vh] w-full">
+            {/* certificate */}
+            <TabsContent value="certificate" className="w-full">
+              <div className="flex flex-col gap-[30px] text-center xl:text-left">
+                <h3 className="text-4xl font-bold">{certificate.title}</h3>
+                <p className="max-w-[700px] text-white/60 mx-auto xl:mx-0">
+                  {certificate.description}
+                </p>
+                <ScrollArea className="h-[400px]">
+                  <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
+                    {certificate.items.map((item, index) => {
+                      return (
+                        <li
+                          key={index}
+                          className="bg-[#232329] h-[184px] py-6 px-12 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
+                        >
+                          <span className="text-accent">{item.duration}</span>
+                          <h3 className="text-xl max-w-[260px] min-h-[60px] text-center lg:text-left">
+                            {item.name}
+                          </h3>
+                          <div className="fex items-center gap-3">
+                            <span></span>
+                            <p>{item.institute}</p>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </ScrollArea>
+              </div>
+            </TabsContent>
             {/* experience */}
             <TabsContent value="experience" className="w-full">
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
@@ -132,7 +171,7 @@ const Reusme = () => {
                   {experience.description}
                 </p>
                 <ScrollArea className="h-[400px]">
-                  <ul cassName="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
+                  <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
                     {experience.items.map((item, index) => {
                       return (
                         <li
@@ -155,16 +194,12 @@ const Reusme = () => {
                 </ScrollArea>
               </div>
             </TabsContent>
-            {/* education */}
-            <TabsContent value="education" className="w-full h-full">
-              education
-            </TabsContent>
             {/* skills */}
             <TabsContent value="skills" className="w-full h-full">
               <div className="flex flex-col gap-[30px]">
                 <div className="flex flex-col gap-[30px] text-center xl:text-left">
                   <h3 className="text-4xl font-bold">{skills.title}</h3>
-                  <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                  <p className="max-w-[700px] text-white/60 mx-auto xl:mx-0">
                     {skills.description}
                   </p>
                 </div>
@@ -191,8 +226,29 @@ const Reusme = () => {
               </div>
             </TabsContent>
             {/* about */}
-            <TabsContent value="about" className="w-full">
-              about
+            <TabsContent
+              value="about"
+              className="w-full text-center xl:text-left"
+            >
+              <div className="flex flex-col gap-[30px] text-center xl:text-left">
+                <h3 className="text-4xl font-bold">{about.title}</h3>
+                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                  {about.description}
+                </p>
+                <ul className="grid grid-cols-1 xl:grid-cols-2 gap-y-6 max-w-[620px] mx-auto xl:mx-0">
+                  {about.info.map((item, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className="flex items-center justify-center xl:justify-start gap-4"
+                      >
+                        <span>{item.fieldName}:</span>
+                        <span>{item.fieldValue}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </TabsContent>
           </div>
         </Tabs>
